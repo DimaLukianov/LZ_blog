@@ -1,4 +1,0 @@
-class DropRoleFromUsers < ActiveRecord::Migration
-  def change
-  end
-end
