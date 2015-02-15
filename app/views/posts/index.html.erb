@@ -1,0 +1,38 @@
+  <% if can? :create, new_post_path %>
+<div id="new">
+    <%= link_to "New post", new_post_path, id: "new_post" %>
+    <%= link_to "Сategories", categories_path, id: "new_category" %>
+  </div>
+<% end %>
+  <h1>Welcom to my blog</h1>
+  <div class = "categories">
+    <h4>Categories:</h4>
+    <%= link_to "All", posts_path %><br>
+    <% @categories = Category.all %>
+    <% @categories.each do |category| %>
+
+      <%= link_to category.category_name, "http://localhost:3000/posts/category/?id=#{category.id}" %><br>
+
+    <% end %>
+  </div> 
+
+  <% @posts.reverse_each do |post| %>
+  <div class="round">
+    <h2 class="title"><%= link_to post.title, post %></h2>
+    <p class="text">
+      <%= truncate post.text %>
+    </p>
+    <p class="category">
+      <% post.categories.each do |c|%>
+      Category: 
+      <%= link_to c.category_name, "http://localhost:3000/posts/category/?id=#{c.id}" %>
+      <% end %>
+    </p>
+    <p class="time">
+      <%= time_ago_in_words post.updated_at %> ago
+    </p>
+    </div>
+  <% end %>
+
+
+  

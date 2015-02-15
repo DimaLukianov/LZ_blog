@@ -1,0 +1,33 @@
+  <h1>Welcom to my blog</h1>
+
+  <p id="new">
+    <a>
+    <%= link_to "New post", new_post_path %></a>
+  </p>
+ 
+
+  <% @posts.reverse_each do |post| %>
+  <% post.categories.each do |c| %>
+    <% @c_id = c.id %>
+      <% end %>
+    <%if @c_id == 4%>
+  <div class="round">
+    <h2 class="title"><%= link_to post.title, post %></h2>
+    <p class="text">
+      <%= truncate post.text %>
+    </p>
+    <p class="category">
+      <% post.categories.each do |c|%>
+      Category: 
+      <%= c.category_name %>
+      <% end %>
+    </p>
+    <p class="time">
+      <%= time_ago_in_words post.updated_at %> ago
+    </p>
+    </div>
+    <%end%>
+  <% end %>
+
+
+  
